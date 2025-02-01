@@ -1,13 +1,45 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กระพริบหัวข้อ</title>
+    <style>
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .blinking {
+            animation: blink 1s infinite;
+            color: rgb(101, 199, 14);
+        }
+        .blue-stripe {
+            background-color: blue;
+            height: 10px;
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="blue-stripe"></div>
+    <h1 class="blinking">สวัสดีนี้เป็น เอไอ ที่สร้างด้วยภาษาhtml5.</h1>
+    <div class="blue-stripe"></div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>หน้าเว็บพื้นฐาน</title>
+    <title>หน้าเว็บไม่พื้นฐาน</title>
 </head>
 <body>
-    <h1>สวัสดี!</h1>
-    <p>นี่คือหน้าเว็บพื้นฐานที่สร้างด้วย HTML.</p>
+    <h1>hi!</h1>
+    <p>นี่เป็นaiะรรมดาที่สร้างด้วยhtml</p>
 
     <h2>ส่วนหัว 2</h2>
     <p>คุณสามารถเพิ่มเนื้อหาต่างๆ ได้ตามต้องการ.</p>
@@ -42,14 +74,21 @@
             function respond() {
                 var input = document.getElementById('userInput').value;
                 var response;
-                if (input === "5 + 5") {
+                if (input === "5+5") {
                     response = "5 + 5 เท่ากับ 10";
-                } else if (input === "5 + 6") {
+                } else if (input === "5+6") {
                     response = "5 + 6 เท่ากับ 11";
-                } else if (input === "11 + 4") {
+                } else if (input === "11+4") {
                     response = "11 + 4 เท่ากับ 15";
-                } else if (input === "55 + 55") {
+                } else if (input === "55+55") {
                     response = "55 + 55 เท่ากับ 110";
+                } else if (input.toLowerCase() === "hi") {
+                    response = "สวัสดีครับ ผมเป็นai";
+                } else if (input.toLowerCase() === "17+5") {
+                    response = "22";    
+            
+                } else if (input.toLowerCase() === "สวัสดี") {
+                    response = "สวัสดีครับ เราเป็นai";
                 } else {
                     response = "คุณพิมพ์ว่า: " + input;
                 }
@@ -64,6 +103,7 @@
         </script>
     </body>
     </html>
+    
     
     <!DOCTYPE html>
     <html lang="th">
@@ -83,6 +123,12 @@
         <div class="my-div"></div>
     </body>
     </html>
+        
+    
+
+</body>
+</html>
+
     
     
 
