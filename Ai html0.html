@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าเว็บพื้นฐาน</title>
+</head>
+<body>
+    <h1>สวัสดี!</h1>
+    <p>นี่คือหน้าเว็บพื้นฐานที่สร้างด้วย HTML.</p>
+
+    <h2>ส่วนหัว 2</h2>
+    <p>คุณสามารถเพิ่มเนื้อหาต่างๆ ได้ตามต้องการ.</p>
+    
+    <ul>
+        <li>รายการที่ 1</li>
+        <li>รายการที่ 2</li>
+        <li>รายการที่ 3</li>
+    </ul>
+
+    <a href="https://chatgpt.com/">คลิกที่นี่เพื่อไปยังลิงก์ภายนอก</a>
+
+    <!DOCTYPE html>
+    <html lang="th">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI พื้นฐาน</title>
+    </head>
+    <body>
+        <h1>สวัสดี!</h1>
+        <p>ยินดีต้อนรับสู่หน้าเว็บที่มี AI พื้นฐาน.</p>
+        
+        <h2>ป้อนข้อความของคุณ:</h2>
+        <input type="text" id="userInput" placeholder="พิมพ์ที่นี่" onkeypress="checkEnter(event)">
+        <button onclick="respond()">ส่ง</button>
+        
+        <h2>การตอบกลับจาก AI:</h2>
+        <p id="response"></p>
+        
+        <script>
+            function respond() {
+                var input = document.getElementById('userInput').value;
+                var response;
+                if (input === "5 + 5") {
+                    response = "5 + 5 เท่ากับ 10";
+                } else if (input === "5 + 6") {
+                    response = "5 + 6 เท่ากับ 11";
+                } else if (input === "11 + 4") {
+                    response = "11 + 4 เท่ากับ 15";
+                } else if (input === "55 + 55") {
+                    response = "55 + 55 เท่ากับ 110";
+                } else {
+                    response = "คุณพิมพ์ว่า: " + input;
+                }
+                document.getElementById('response').innerText = response;
+            }
+    
+            function checkEnter(event) {
+                if (event.key === "Enter") {
+                    respond();
+                }
+            }
+        </script>
+    </body>
+    </html>
+    
+    <!DOCTYPE html>
+    <html lang="th">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>เปลี่ยนสีพื้นหลังของ div</title>
+        <style>
+            .my-div {
+                background-color: #00ccff; /* ใส่สีที่ต้องการ */
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="my-div"></div>
+    </body>
+    </html>
+    
+    
+
+</body>
+</html>
