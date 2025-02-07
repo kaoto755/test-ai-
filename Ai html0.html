@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI HTML Demo</title>
-    <style>
+    <title>AI HTML Demo - Frutiger Aero</title>
+    <style>    
         body {
             background: linear-gradient(to right, #87e0fd, #53a0fd);
             font-family: Arial, sans-serif;
             text-align: center;
             color: white;
+            overflow: hidden;
         }
         .container, .calculator {
             background: rgba(255, 255, 255, 0.3);
@@ -63,60 +64,35 @@
 <body>
     <div class="container">
         <h1>สวัสดี! นี่คือ เกือบAI ที่สร้างด้วย HTML5.</h1>
-        <h2>ป้อนข้อความของคุณ:</h2>
-        <input type="text" id="userInput" placeholder="พิมพ์ที่นี่" onkeypress="checkEnter(event)">
+        <a href="https://github.com/kaoto755/test-ai-">คลิกที่นี่เพื่อไปยังลิงก์ภายนอก</a>
+        <input type="text" id="userInput" placeholder="พิมพ์คำถามของคุณที่นี่" onkeypress="checkEnter(event)">
         <button class="button" onclick="respond()">ส่ง</button>
         <h2>การตอบกลับจาก AI:</h2>
         <p id="response"></p>
     </div>
 
-    <div class="calculator">
-        <input type="text" class="display" id="display" disabled>
-        <br>
-        <button class="button" onclick="appendToDisplay('1')">1</button>
-        <button class="button" onclick="appendToDisplay('2')">2</button>
-        <button class="button" onclick="appendToDisplay('3')">3</button>
-        <button class="button" onclick="appendToDisplay('+')">+</button>
-        <br>
-        <button class="button" onclick="appendToDisplay('4')">4</button>
-        <button class="button" onclick="appendToDisplay('5')">5</button>
-        <button class="button" onclick="appendToDisplay('6')">6</button>
-        <button class="button" onclick="appendToDisplay('-')">-</button>
-        <br>
-        <button class="button" onclick="appendToDisplay('7')">7</button>
-        <button class="button" onclick="appendToDisplay('8')">8</button>
-        <button class="button" onclick="appendToDisplay('9')">9</button>
-        <button class="button" onclick="appendToDisplay('*')">*</button>
-        <br>
-        <button class="button" onclick="appendToDisplay('0')">0</button>
-        <button class="button" onclick="clearDisplay()">C</button>
-        <button class="button" onclick="calculate()">=</button>
-        <button class="button" onclick="appendToDisplay('/')">/</button>
-    </div>
-
     <script>
         function respond() {
-            var input = document.getElementById('userInput').value;
-            var response = "คุณพิมพ์ว่า: " + input;
+            var input = document.getElementById('userInput').value.toLowerCase();
+            var response;
+            
+            var qa = {
+                "สวัสดี": "สวัสดี! วันนี้เป็นวันที่ดีนะ!",
+                "คุณชื่ออะไร": "ฉันคือ AI HTML5 ที่คอยช่วยตอบคำถามให้คุณ!",
+                "อากาศวันนี้เป็นยังไง": "ฉันไม่สามารถเช็คสภาพอากาศได้ แต่คุณลองดูจากแอปพยากรณ์อากาศดูสิ!",
+                "ทำอาหารอะไรดีวันนี้": "ลองทำผัดไทย หรือข้าวผัดสิ! ง่ายและอร่อย",
+                "ฉันควรออกกำลังกายไหม": "แน่นอน! การออกกำลังกายช่วยให้สุขภาพดีขึ้นเสมอ",
+                "ฉันรู้สึกเศร้า": "ทุกอย่างจะดีขึ้นนะ! ลองพักผ่อนและทำสิ่งที่คุณชอบดูสิ 😊",
+                
+            };
+            
+            response = qa[input] || "ขอโทษ ฉันยังไม่เข้าใจคำถามนี้ แต่ฉันกำลังเรียนรู้!";
             document.getElementById('response').innerText = response;
         }
+
         function checkEnter(event) {
             if (event.key === "Enter") {
                 respond();
-            }
-        }
-        function appendToDisplay(value) {
-            document.getElementById('display').value += value;
-        }
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-        function calculate() {
-            let display = document.getElementById('display');
-            try {
-                display.value = eval(display.value);
-            } catch (error) {
-                display.value = 'Error';
             }
         }
     </script>
