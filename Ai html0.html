@@ -4,71 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI HTML Demo - Frutiger Aero</title>
-    <style>    
-        body {
-            background: linear-gradient(to right, #87e0fd, #53a0fd);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: white;
-            overflow: hidden;
+    <link href="https://fonts.googleapis.com/css2?family=Frutiger:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: linear-gradient(to right, #87e0fd, #53a0fd);
+            --bg-dark: linear-gradient(to right, #1e3c72, #2a5298);
+            --container-light: rgba(255, 255, 255, 0.6);
+            --container-dark: rgba(0, 0, 0, 0.6);
+            --text-light: white;
+            --text-dark: #ddd;
+            --text-dark-response: black;
+            --text-light-response: white;
         }
-        .container, .calculator {
-            background: rgba(255, 255, 255, 0.3);
+        body {
+            background: var(--bg-light);
+            font-family: 'Frutiger', Arial, sans-serif;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+            transition: background 1s ease-in-out, color 1s ease-in-out;
+        }
+        .app-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s ease;
+        }
+        .app-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+            opacity: 1;
+        }
+        .app-icon img {
+            width: 60%;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-            margin: 20px;
-            display: inline-block;
-            backdrop-filter: blur(10px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            max-width: 400px;
+            width: 80%;
+            opacity: 0;
+            animation: fadeIn 1s forwards, popUpAnimation 0.3s ease-out;
         }
-        h1, h2 {
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
-        .button {
-            background: linear-gradient(to bottom, #4caf50, #087f23);
-            color: white;
-            border: none;
-            padding: 10px 20px;
+        @keyframes popUpAnimation {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        .dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            animation: fadeInBackground 1s ease-in-out;
+        }
+        @keyframes fadeInBackground {
+            0% {
+                background: var(--bg-light);
+            }
+            100% {
+                background: var(--bg-dark);
+            }
+        }
+        .dark-mode .popup {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        #response {
+            color: var(--text-light-response);
+            font-weight: 400;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeInText 2s forwards;
+        }
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .dark-mode #response {
+            color: var(--text-dark-response);
+        }
+        h1 {
+            font-weight: 600;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            font-family: 'Frutiger', Arial, sans-serif;
             font-size: 16px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .button:hover {
-            background: linear-gradient(to bottom, #66bb6a, #388e3c);
-            transform: scale(1.05);
-        }
-        input[type="text"] {
             padding: 10px;
             border-radius: 10px;
             border: none;
-            width: 200px;
-            box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            transition: background 0.3s, transform 0.3s ease-in-out;
         }
-        .display {
-            width: 90%;
-            height: 40px;
-            text-align: right;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            padding: 5px;
-            font-size: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
+        input {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        button {
+            background: #53a0fd;
+            color: white;
+            cursor: pointer;
+            transform: scale(1);
+            transition: transform 0.3s;
+        }
+        button:hover {
+            background: #4094c9;
+            transform: scale(1.05);
+        }
+        .dark-mode input {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        .dark-mode button {
+            background: #1e3c72;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>สวัสดี! นี่คือ เกือบAI ที่สร้างด้วย HTML5.</h1>
-        <a href="https://github.com/kaoto755/test-ai-">คลิกที่นี่เพื่อไปยังลิงก์ภายนอก</a>
+    <h1>ยินดีต้อนรับสู่ AI HTML5!</h1>
+    <div class="app-container">
+        <div class="app-icon" onclick="togglePopup('ai-popup')">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712102.png" alt="AI Bot">
+        </div>
+        <div class="app-icon" onclick="toggleTheme()">
+            <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Theme Toggle">
+        </div>
+    </div>
+    
+    <div id="ai-popup" class="popup">
+        <h2>ถาม AI ของคุณ</h2>
         <input type="text" id="userInput" placeholder="พิมพ์คำถามของคุณที่นี่" onkeypress="checkEnter(event)">
-        <button class="button" onclick="respond()">ส่ง</button>
-        <h2>การตอบกลับจาก AI:</h2>
+        <button onclick="respond()">ส่ง</button>
         <p id="response"></p>
+        <button onclick="togglePopup('ai-popup')">ปิด</button>
     </div>
 
     <script>
@@ -79,11 +184,6 @@
             var qa = {
                 "สวัสดี": "สวัสดี! วันนี้เป็นวันที่ดีนะ!",
                 "คุณชื่ออะไร": "ฉันคือ AI HTML5 ที่คอยช่วยตอบคำถามให้คุณ!",
-                "อากาศวันนี้เป็นยังไง": "ฉันไม่สามารถเช็คสภาพอากาศได้ แต่คุณลองดูจากแอปพยากรณ์อากาศดูสิ!",
-                "ทำอาหารอะไรดีวันนี้": "ลองทำผัดไทย หรือข้าวผัดสิ! ง่ายและอร่อย",
-                "ฉันควรออกกำลังกายไหม": "แน่นอน! การออกกำลังกายช่วยให้สุขภาพดีขึ้นเสมอ",
-                "ฉันรู้สึกเศร้า": "ทุกอย่างจะดีขึ้นนะ! ลองพักผ่อนและทำสิ่งที่คุณชอบดูสิ 😊",
-                
             };
             
             response = qa[input] || "ขอโทษ ฉันยังไม่เข้าใจคำถามนี้ แต่ฉันกำลังเรียนรู้!";
@@ -94,6 +194,15 @@
             if (event.key === "Enter") {
                 respond();
             }
+        }
+
+        function togglePopup(id) {
+            var popup = document.getElementById(id);
+            popup.style.display = popup.style.display === "block" ? "none" : "block";
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
         }
     </script>
 </body>
