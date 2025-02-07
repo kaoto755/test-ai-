@@ -3,85 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI HTML Demo</title>
+    <title>AI HTML Demo - Frutiger Aero</title>
     <style>
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+        body {
+            background: linear-gradient(to right, #87e0fd, #53a0fd);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
         }
-        .blinking {
-            animation: blink 1s infinite;
-            color: rgb(101, 199, 14);
+        .container, .calculator {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
         }
-        .blue-stripe {
-            background-color: blue;
-            height: 10px;
-            width: 100%;
-            display: block;
+        h1, h2 {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
-        .my-div {
-            background-color: #00ccff;
+        .button {
+            background: linear-gradient(to bottom, #4caf50, #087f23);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: linear-gradient(to bottom, #66bb6a, #388e3c);
+            transform: scale(1.05);
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
             width: 200px;
-            height: 200px;
-            margin-top: 20px;
-        }
-        .calculator {
-            width: 200px;
+            box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
         }
         .display {
-            width: 100%;
+            width: 90%;
             height: 40px;
             text-align: right;
             margin-bottom: 10px;
-        }
-        .button {
-            width: 45px;
-            height: 45px;
-            margin: 2px;
+            border-radius: 10px;
+            padding: 5px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
         }
     </style>
 </head>
 <body>
-    <!-- Section 1 -->
-    <div class="blue-stripe"></div>
-    <h1 class="blinking">สวัสดี! นี่คือ เกือบAI ที่สร้างด้วย HTML5.</h1>
-    <div class="blue-stripe"></div>
+    <div class="container">
+        <h1>สวัสดี! นี่คือ เกือบAI ที่สร้างด้วย HTML5.</h1>
+        <h2>ป้อนข้อความของคุณ:</h2>
+        <input type="text" id="userInput" placeholder="พิมพ์ที่นี่" onkeypress="checkEnter(event)">
+        <button class="button" onclick="respond()">ส่ง</button>
+        <h2>การตอบกลับจาก AI:</h2>
+        <p id="response"></p>
+    </div>
 
-    <!-- Section 2 -->
-    <h1>Hi!</h1>
-    <p>นี่คือ เกือบAI ธรรมดาที่สร้างด้วย HTML.</p>
-
-    <h2>ส่วนหัว 2</h2>
-    <p>คุณสามารถเพิ่มเนื้อหาต่างๆ ได้ตามต้องการ.</p>
-    
-    <ul>
-        <li>รายการที่ 1</li>
-        <li>รายการที่ 2</li>
-        <li>รายการที่ 3</li>
-    </ul>
-
-    <a href="https://chatgpt.com/" target="_blank">คลิกที่นี่เพื่อไปยังลิงก์ภายนอก</a>
-
-    <!-- Section 3 -->
-    <h1>สวัสดี!</h1>
-    <p>ยินดีต้อนรับสู่หน้าเว็บที่มี AI พื้นฐาน.</p>
-    <marquee>สวัสดี</marquee>
-    
-    <h2>ป้อนข้อความของคุณ:</h2>
-    <input type="text" id="userInput" placeholder="พิมพ์ที่นี่" onkeypress="checkEnter(event)">
-    <button onclick="respond()">ส่ง</button>
-    
-    <h2>การตอบกลับจาก AI:</h2>
-    <p id="response"></p>
-
-    <!-- Section 4 -->
-    <input type="color" name="" id="">
-
-
-
-    <!-- Calculator Section -->
-    <h2>เครื่องคิดเลข</h2>
     <div class="calculator">
         <input type="text" class="display" id="display" disabled>
         <br>
@@ -109,50 +97,20 @@
     <script>
         function respond() {
             var input = document.getElementById('userInput').value;
-            var response;
-
-            switch (input.toLowerCase()) {
-                case "5+5":
-                    response = "5 + 5 เท่ากับ 10";
-                    break;
-                case "5+6":
-                    response = "5 + 6 เท่ากับ 11";
-                    break;
-                case "11+4":
-                    response = "11 + 4 เท่ากับ 15";
-                    break;
-                case "55+55":
-                    response = "55 + 55 เท่ากับ 110";
-                    break;
-                case "17+5":
-                    response = "17 + 5 เท่ากับ 22";
-                    break;
-                case "hi":
-                    response = "สวัสดีครับ ผมเป็น AI";
-                    break;
-                case "สวัสดี":
-                    response = "สวัสดีครับ เราเป็น AI";
-                    break;
-                default:
-                    response = "คุณพิมพ์ว่า: " + input;
-            }
+            var response = "คุณพิมพ์ว่า: " + input;
             document.getElementById('response').innerText = response;
         }
-
         function checkEnter(event) {
             if (event.key === "Enter") {
                 respond();
             }
         }
-
         function appendToDisplay(value) {
             document.getElementById('display').value += value;
         }
-
         function clearDisplay() {
             document.getElementById('display').value = '';
         }
-
         function calculate() {
             let display = document.getElementById('display');
             try {
@@ -164,4 +122,3 @@
     </script>
 </body>
 </html>
-
