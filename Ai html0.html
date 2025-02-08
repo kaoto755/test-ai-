@@ -10,6 +10,9 @@
     :root {
       --bg-light: linear-gradient(to right, #87e0fd, #53a0fd);
       --bg-dark: linear-gradient(to right, #1e3c72, #2a5298);
+      --bg-image-1: url('https://source.unsplash.com/1600x900/?nature');
+      --bg-image-2: url('https://source.unsplash.com/1600x900/?city');
+      --bg-image-3: url('https://source.unsplash.com/1600x900/?beach');
       --container-light: rgba(255, 255, 255, 0.6);
       --container-dark: rgba(0, 0, 0, 0.6);
       --text-light: rgb(0, 0, 0);
@@ -172,8 +175,12 @@
     <div class="app-icon" onclick="togglePopup('calc-popup')">
       <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Calculator">
     </div>
+    <!-- ไอคอนสำหรับเปลี่ยนพื้นหลัง -->
+    <div class="app-icon" onclick="changeBackground()">
+      <img src="c:\Users\Window 10 Home\Downloads\5780.jpg" alt="Background Change">
+    </div>
   </div>
-  
+
   <!-- Popup สำหรับ AI -->
   <div id="ai-popup" class="popup">
     <h2>ถาม AI ของคุณ</h2>
@@ -267,6 +274,15 @@
 
     function clearCalc() {
       calcDisplay.value = '0';
+    }
+
+    // ฟังก์ชันสำหรับเปลี่ยนพื้นหลัง
+    let bgIndex = 0;
+    const backgrounds = [ 'var(--bg-light)', 'var(--bg-dark)', 'var(--bg-image-1)', 'var(--bg-image-2)', 'var(--bg-image-3)' ];
+
+    function changeBackground() {
+      bgIndex = (bgIndex + 1) % backgrounds.length;
+      document.body.style.background = backgrounds[bgIndex];
     }
   </script>
 </body>
